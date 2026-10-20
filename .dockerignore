@@ -1,0 +1,16 @@
+# Lo que NO debe viajar en el contexto del build
+target/
+.git/
+.gitignore
+.gitattributes
+.idea/
+.vscode/
+*.iml
+.mvn/
+mvnw
+mvnw.cmd
+*.md
+*.log
+.env
+Dockerfile
+.dockerignore
