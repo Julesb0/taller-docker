@@ -3152,4 +3152,343 @@ drwxr-xr-x 4 julesb0 julesb0   4096 Oct 20 16:31 [01;34m..[0m
 -rw-r--r-- 1 julesb0 julesb0    172 Oct 20 16:47 .dockerignore
 -rw-r--r-- 1 julesb0 julesb0   2003 Oct 20 16:47 Dockerfile
 -rw-r--r-- 1 julesb0 julesb0 401774 Oct 20 16:47 audit_session.log
-[?2004h[2026-10-20 16:47:33] julesb0@LAPTOP-AGL32KNJ:~/taller-docker/eco-air-backend$ 
+[?2004h[2026-10-20 16:47:33] julesb0@LAPTOP-AGL32KNJ:~/taller-docker/eco-air-backend$ [?2004l
+exit
+Script started on 2026-10-21 01:14:52-05:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="120" LINES="30"]
+[?2004h]0;julesb0@LAPTOP-AGL32KNJ: ~/taller-docker/eco-air-backend[01;32mjulesb0@LAPTOP-AGL32KNJ[00m:[01;34m~/taller-docker/eco-air-backend[00m$ [7mexport PS1='[\D{%Y-%m-%d %H:%M:%S}] \u@\h:\w\$ '[27m
+[7mexport BUILDKIT_PROGRESS=plain[27m
+[7mdate[27m
+[7mdocker images eco-air-backend[27m[A[A[A]0;julesb0@LAPTOP-AGL32KNJ: ~/taller-docker/eco-air-backend[01;32mjulesb0@LAPTOP-AGL32KNJ[00m:[01;34m~/taller-docker/eco-air-backend[00m$ export PS1='[\D{%Y-%m-%d %H:%M:%S}] \u@\h:\w\$ '
+export BUILDKIT_PROGRESS=plain
+date
+docker images eco-air-backend
+[?2004lWed Oct 21 01:18:00 -05 2026
+                                                                                                    [1m[106m[30mi[0m[0m [96mInfo → [0m[0m [38;5;0m[48;5;14m U [0m In Use
+[39m[1mIMAGE[0m                   [39m[1mID[0m             [39m[1mDISK USAGE[0m   [39m[1mCONTENT SIZE[0m   [39m[1mEXTRA[0m
+[34m[1meco-air-backend:1.0.0[0m   [39mc2bba550c077[0m        [39m365MB[0m          [39m118MB[0m        
+[?2004h[2026-10-21 01:18:00] julesb0@LAPTOP-AGL32KNJ:~/taller-docker/eco-air-backend$ [7mdocker history --human --format "table {{[27m[7m.[27m[7mSize}}\t{{.CreatedBy}}" eco-air-backend:1.0.0 [27m
+[7mdocker run -d --name eco_air_active -p 8080:8080 eco-air-backend:1.0.0[27m
+[7mdocker top eco_air_active -o pid,user,comm[27m
+[7mdocker exec eco_air_active id[27m
+[7msleep 10[27m
+[7mdocker logs eco_air_active 2>&1 | grep -E "Picked up|Starting EcoAirApplication|Started EcoAirApplication"[27m
+[7mcurl -s -X POST http://localhost:8080/api/alertas -H "Content-Type: application/json" -d '{"sensor":"ESTACION-01-PM25","[27m[7mt[27m[7mipo":"PM2.5","valor":187.4,"nivel":"CRITICO"}'; echo [27m
+[7mcurl -s http://localhost:8080/api/alertas; echo[27m[A[A[A[A[A[A[A[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdocker history --human --format "table {{.Size}}\t{{.CreatedBy}}" eco-air-backend:1.0.0
+docker run -d --name eco_air_active -p 8080:8080 eco-air-backend:1.0.0
+docker top eco_air_active -o pid,user,comm
+docker exec eco_air_active id
+sleep 10
+docker logs eco_air_active 2>&1 | grep -E "Picked up|Starting EcoAirApplication|Started EcoAirApplication"
+curl -s -X POST http://localhost:8080/api/alertas -H "Content-Type: application/json" -d '{"sensor":"ESTACION-01-PM25","tipo":"PM2.5","valor":187.4,"nivel":"CRITICO"}'; echo
+curl -s http://localhost:8080/api/alertas; echo
+[?2004lSIZE      CREATED BY
+0B        ENTRYPOINT ["java" "-jar" "/app/app.jar"]
+0B        EXPOSE [8080/tcp]
+0B        USER sensor_user
+0B        ENV OPERATOR_ID=908632
+0B        ARG STUDENT_ID=908632
+0B        ENV JAVA_TOOL_OPTIONS=-XX:+UseContainerSuppo…
+52.5MB    COPY --chown=sensor_user:sensorgroup /build/…
+4.1kB     WORKDIR /app
+36.9kB    RUN /bin/sh -c addgroup -S -g 10001 sensorgr…
+0B        ENTRYPOINT ["/__cacert_entrypoint.sh"]
+12.3kB    COPY --chmod=755 entrypoint.sh /__cacert_ent…
+12.3kB    RUN /bin/sh -c set -eux;     echo "Verifying…
+141MB     RUN /bin/sh -c set -eux;     ARCH="$(apk --p…
+0B        ENV JAVA_VERSION=jdk-17.0.20.1+1
+44MB      RUN /bin/sh -c set -eux;     apk add --no-ca…
+0B        ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_AL…
+0B        ENV PATH=/opt/java/openjdk/bin:/usr/local/sb…
+0B        ENV JAVA_HOME=/opt/java/openjdk
+0B        CMD ["/bin/sh"]
+9.08MB    ADD alpine-minirootfs-3.24.2-x86_64.tar.gz /…
+999e5a8efdc02870fa2d11d80124106ca41784da6f7fda8e330eebd96618619a
+PID                 USER                COMMAND
+528                 10001               java
+uid=10001(sensor_user) gid=10001(sensorgroup) groups=10001(sensorgroup)
+[01;31m[KPicked up[m[K JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+2026-10-21T06:18:20.539Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : [01;31m[KStarting EcoAirApplication[m[K v0.0.1-SNAPSHOT using Java 17.0.20.1 with PID 1 (/app/app.jar started by sensor_user in /app)
+2026-10-21T06:18:24.801Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : [01;31m[KStarted EcoAirApplication[m[K in 4.888 seconds (process running for 6.337)
+{"id":1,"nivel":"CRITICO","registradaEn":"2026-10-21T06:18:28.708014003Z","sensor":"ESTACION-01-PM25","tipo":"PM2.5","valor":187.4}
+[{"id":1,"nivel":"CRITICO","registradaEn":"2026-10-21T06:18:28.708014Z","sensor":"ESTACION-01-PM25","tipo":"PM2.5","valor":187.4}]
+[?2004h[2026-10-21 01:18:28] julesb0@LAPTOP-AGL32KNJ:~/taller-docker/eco-air-backend$ [7mdocker exec eco_air_active touch /etc/cro[27m[7mn[27m[7mtab_fake [27m
+[7mecho $?[27m
+[7mdocker exec eco_air_active ls -ld /etc[27m
+[7mdocker exec eco_air_active which mvn[27m
+[7mecho $?[27m
+[7mdocker exec eco_air_active which javac[27m
+[7mecho $?[27m
+[7mdocker exec eco_air_active find / -name "*.java" 2>/dev/null[27m
+[7mdocker exec eco_air_active ls -la /app[27m[A[A[A[A[A[A[A[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdocker exec eco_air_active touch /etc/crontab_fake
+echo $?
+docker exec eco_air_active ls -ld /etc
+docker exec eco_air_active which mvn
+echo $?
+docker exec eco_air_active which javac
+echo $?
+docker exec eco_air_active find / -name "*.java" 2>/dev/null
+docker exec eco_air_active ls -la /app
+[?2004ltouch: cannot touch '/etc/crontab_fake': Permission denied
+1
+drwxr-xr-x 1 root root 4096 Oct 21 06:18 /etc
+1
+1
+total 51304
+drwxr-xr-x 1 sensor_user sensorgroup     4096 Oct 20 21:43 .
+drwxr-xr-x 1 root        root            4096 Oct 21 06:18 ..
+-rw-r--r-- 1 sensor_user sensorgroup 52524678 Oct 20 21:43 app.jar
+[?2004h[2026-10-21 01:25:10] julesb0@LAPTOP-AGL32KNJ:~/taller-docker/eco-air-backend$ [7mdocker stats --no-stream eco_air_active[27m
+[7mdocker run -d --name eco_air_crash -m 48m eco-air-backend:1.0.0[27m
+[7msleep 10[27m
+[7mdocker inspect eco_air_crash --format='Status: {{.State.Status}} | ExitCode: {{.State.ExitCode}} | OOMKilled: {{.State.O[27m[7mO[27m[7mMKilled}}' [27m
+[7mdocker inspect eco_air_crash --format='Memory: {{.HostConfig.Memory}} | MemorySwap: {{.HostConfig.MemorySwap}}'[27m
+[7mdocker logs eco_air_crash 2>&1 | tail -n 15[27m[A[A[A[A[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdocker stats --no-stream eco_air_active
+docker run -d --name eco_air_crash -m 48m eco-air-backend:1.0.0
+sleep 10
+docker inspect eco_air_crash --format='Status: {{.State.Status}} | ExitCode: {{.State.ExitCode}} | OOMKilled: {{.State.OOMKilled}}'
+docker inspect eco_air_crash --format='Memory: {{.HostConfig.Memory}} | MemorySwap: {{.HostConfig.MemorySwap}}'
+docker logs eco_air_crash 2>&1 | tail -n 15
+[?2004lCONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O        PIDS
+999e5a8efdc0   eco_air_active   0.14%     283.9MiB / 7.376GiB   3.76%     2.85kB / 1.19kB   93.9MB / 463kB   49
+88ac69bca7401db6b3fb47780817d138c50f9cf57f19c6f66fa257f615392eec
+Status: exited | ExitCode: 137 | OOMKilled: true
+Memory: 50331648 | MemorySwap: 100663296
+Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+2026-10-21T06:33:50.698Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : Starting EcoAirApplication v0.0.1-SNAPSHOT using Java 17.0.20.1 with PID 1 (/app/app.jar started by sensor_user in /app)
+2026-10-21T06:33:50.789Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : No active profile set, falling back to 1 default profile: "default"
+2026-10-21T06:33:56.372Z  INFO 1 --- [eco-air-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[?2004h[2026-10-21 01:33:58] julesb0@LAPTOP-AGL32KNJ:~/taller-docker/eco-air-backend$ [7mprobar() {[27m
+[7m  echo "================ Prueba con -m $1 ================"[27m
+[7m  docker rm -f eco_air_active[27m
+[7m  docker run -d --name eco_air_active -p 8080:8080 -m "$1" eco-air-backend:1.0.0[27m
+[7m  sleep 20[27m
+[7m  docker inspect eco_air_active --format='Status: {{.State.Status}} | ExitCode: {{.State.ExitCode}} | OOMKilled: {{.Stat[27m[7me[27m[7m.OOMKilled}}' [27m
+[7m  docker logs --timestamps eco_air_active | grep "Started EcoAirApplication"[27m
+[7m  docker stats --no-stream eco_air_active[27m
+[7m  echo -n "Swap usado (bytes): "; docker exec eco_air_active cat /sys/fs/cgroup/memory.swap.current[27m
+[7m}[27m[A[A[A[A[A[A[A[A[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cprobar() {
+  echo "================ Prueba con -m $1 ================"
+  docker rm -f eco_air_active
+  docker run -d --name eco_air_active -p 8080:8080 -m "$1" eco-air-backend:1.0.0
+  sleep 20
+  docker inspect eco_air_active --format='Status: {{.State.Status}} | ExitCode: {{.State.ExitCode}} | OOMKilled: {{.State.OOMKilled}}'
+  docker logs --timestamps eco_air_active | grep "Started EcoAirApplication"
+  docker stats --no-stream eco_air_active
+  echo -n "Swap usado (bytes): "; docker exec eco_air_active cat /sys/fs/cgroup/memory.swap.current
+}
+[?2004l[?2004h[2026-10-21 01:47:11] julesb0@LAPTOP-AGL32KNJ:~/taller-docker/eco-air-backend$ [7mfor m in 512m 384m 256m 224m 192m 160m 12[27m[7m8[27m[7mm 96m; do probar $m; done[27m[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cfor m in 512m 384m 256m 224m 192m 160m 128m 96m; do probar $m; done
+[?2004l================ Prueba con -m 512m ================
+eco_air_active
+b2bef078e392570c5db7f9be9dbae68f890ae359e51d6cd8557dbac35e8fac15
+Status: running | ExitCode: 0 | OOMKilled: false
+2026-10-21T06:47:20.064744539Z Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+2026-10-21T06:47:25.183323974Z 2026-10-21T06:47:25.182Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : [01;31m[KStarted EcoAirApplication[m[K in 4.138 seconds (process running for 5.62)
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O         PIDS
+b2bef078e392   eco_air_active   0.12%     249.8MiB / 512MiB   48.78%    1.17kB / 126B   60.3MB / 32.8kB   31
+Swap usado (bytes): 0
+================ Prueba con -m 384m ================
+eco_air_active
+4dea77a4bbb169c1140574d5e1604571a0d376dacad2720cde0c8cf187630366
+Status: running | ExitCode: 0 | OOMKilled: false
+2026-10-21T06:47:40.039701453Z Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+2026-10-21T06:47:43.514695702Z 2026-10-21T06:47:43.514Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : [01;31m[KStarted EcoAirApplication[m[K in 3.026 seconds (process running for 3.969)
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O     PIDS
+4dea77a4bbb1   eco_air_active   0.12%     203.6MiB / 384MiB   53.03%    1.17kB / 126B   0B / 32.8kB   31
+Swap usado (bytes): 0
+================ Prueba con -m 256m ================
+eco_air_active
+3ac59b1166df6b7bf5dfac8766ea7a862bd44255b19fa078b4bae76c75a6a804
+Status: running | ExitCode: 0 | OOMKilled: false
+2026-10-21T06:48:00.023540867Z Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+2026-10-21T06:48:03.398579284Z 2026-10-21T06:48:03.398Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : [01;31m[KStarted EcoAirApplication[m[K in 2.925 seconds (process running for 3.873)
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O     PIDS
+3ac59b1166df   eco_air_active   0.13%     187.4MiB / 256MiB   73.22%    1.17kB / 126B   0B / 32.8kB   31
+Swap usado (bytes): 0
+================ Prueba con -m 224m ================
+eco_air_active
+67c9365917eac7cc4353b57876e29bfbc86c8270ad16874b6914add756753ba7
+Status: running | ExitCode: 0 | OOMKilled: false
+2026-10-21T06:48:20.285172014Z Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+2026-10-21T06:48:23.786360030Z 2026-10-21T06:48:23.785Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : [01;31m[KStarted EcoAirApplication[m[K in 3.045 seconds (process running for 4.001)
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O     PIDS
+67c9365917ea   eco_air_active   0.13%     180MiB / 224MiB     80.38%    1.17kB / 126B   0B / 32.8kB   31
+Swap usado (bytes): 0
+================ Prueba con -m 192m ================
+eco_air_active
+97c49e5b1630d9f361c7afe3dd65c3236dede454974448640692122896a518a6
+Status: running | ExitCode: 0 | OOMKilled: false
+2026-10-21T06:48:40.244674318Z Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+2026-10-21T06:48:43.792228454Z 2026-10-21T06:48:43.791Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : [01;31m[KStarted EcoAirApplication[m[K in 3.091 seconds (process running for 4.049)
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O         PIDS
+97c49e5b1630   eco_air_active   0.14%     170.8MiB / 192MiB   88.97%    1.17kB / 126B   6.22MB / 16.5MB   31
+Swap usado (bytes): 15519744
+================ Prueba con -m 160m ================
+eco_air_active
+738a08f784f29998b9e2279b2077c2173a819049d91d43aa1252473352731a76
+Status: running | ExitCode: 0 | OOMKilled: false
+2026-10-21T06:49:00.230881567Z Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+2026-10-21T06:49:04.617909620Z 2026-10-21T06:49:04.617Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : [01;31m[KStarted EcoAirApplication[m[K in 3.88 seconds (process running for 5.046)
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O         PIDS
+738a08f784f2   eco_air_active   0.14%     132.7MiB / 160MiB   82.93%    1.17kB / 126B   36.2MB / 70.9MB   31
+Swap usado (bytes): 63975424
+================ Prueba con -m 128m ================
+eco_air_active
+4b600a5718d5e6c5737a5dc4dc615c4feccb7eda7cf4784a8e5e38e3eb4885af
+Status: running | ExitCode: 0 | OOMKilled: false
+2026-10-21T06:49:20.216312970Z Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+2026-10-21T06:49:26.097823083Z 2026-10-21T06:49:26.097Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : [01;31m[KStarted EcoAirApplication[m[K in 5.388 seconds (process running for 6.38)
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O        PIDS
+4b600a5718d5   eco_air_active   0.13%     101.4MiB / 128MiB   79.20%    1.17kB / 126B   94.2MB / 150MB   31
+Swap usado (bytes): 75276288
+================ Prueba con -m 96m ================
+eco_air_active
+bc9d530fa04304d1be49f967de567e89552cd24f4012cae05872617e2c8a152b
+Status: exited | ExitCode: 137 | OOMKilled: true
+2026-10-21T06:49:40.265039122Z Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O   BLOCK I/O   PIDS
+bc9d530fa043   eco_air_active   0.00%     0B / 0B             0.00%     0B / 0B   0B / 0B     0
+Swap usado (bytes): Error response from daemon: container bc9d530fa04304d1be49f967de567e89552cd24f4012cae05872617e2c8a152b is not running
+[?2004h[2026-10-21 01:49:58] julesb0@LAPTOP-AGL32KNJ:~/taller-docker/eco-air-backend$ [7mfor m in 216m 208m 200m 112m; do probar $[27m[7mm[27m[7m; done [27m
+
+[7mdocker run -d --name eco_air_noswap -m 128m --memory-swap 128m eco-air-backend:1.0.0[27m
+[7msleep 20[27m
+[7mdocker inspect eco_air_noswap --format='Status: {{.State.Status}} | ExitCode: {{.State.ExitCode}} | OOMKilled: {{.State.[27m[7mO[27m[7mOMKilled}}' [27m
+
+[7mdocker run --rm -m 208m --entrypoint java eco-air-backend:1.0.0 -XX:+PrintFlagsFinal -version 2>&1 | grep -E "\bUseSeria[27m[7ml[27m[7mGC\b|\bUseG1GC\b|\bMaxHeapSize\b|\bInitialHeapSize\b" [27m
+[7mdocker run --rm --entrypoint java eco-air-backend:1.0.0 -XX:+PrintFlagsFinal -version 2>&1 | grep -E "\bUseSerialGC\b|\b[27m[7mU[27m[7mseG1GC\b|\bMaxHeapSize\b|\bInitialHeapSize\b"[27m[A[A[A[A[A[A[A[A[A[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cfor m in 216m 208m 200m 112m; do probar $m; done
+
+docker run -d --name eco_air_noswap -m 128m --memory-swap 128m eco-air-backend:1.0.0
+sleep 20
+docker inspect eco_air_noswap --format='Status: {{.State.Status}} | ExitCode: {{.State.ExitCode}} | OOMKilled: {{.State.OOMKilled}}'
+
+docker run --rm -m 208m --entrypoint java eco-air-backend:1.0.0 -XX:+PrintFlagsFinal -version 2>&1 | grep -E "\bUseSerialGC\b|\bUseG1GC\b|\bMaxHeapSize\b|\bInitialHeapSize\b"
+docker run --rm --entrypoint java eco-air-backend:1.0.0 -XX:+PrintFlagsFinal -version 2>&1 | grep -E "\bUseSerialGC\b|\bUseG1GC\b|\bMaxHeapSize\b|\bInitialHeapSize\b"
+[?2004l================ Prueba con -m 216m ================
+eco_air_active
+ebc9ddbc40dfe6b4db767fa67c0e0cb2855b8440f48178cf24f51b38eb3ace12
+Status: running | ExitCode: 0 | OOMKilled: false
+2026-10-21T06:55:11.498136935Z Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+2026-10-21T06:55:05.566258739Z 2026-10-21T06:55:05.565Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : [01;31m[KStarted EcoAirApplication[m[K in 3.64 seconds (process running for 4.157)
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O     PIDS
+ebc9ddbc40df   eco_air_active   0.12%     180.9MiB / 216MiB   83.73%    1.17kB / 126B   0B / 32.8kB   31
+Swap usado (bytes): 0
+================ Prueba con -m 208m ================
+eco_air_active
+f270a309e859b033e0605bebbba5ffef6a2fd04ee14cfe874a67d977074ba837
+Status: running | ExitCode: 0 | OOMKilled: false
+2026-10-21T06:55:31.468078356Z Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+2026-10-21T06:55:25.354463456Z 2026-10-21T06:55:25.354Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : [01;31m[KStarted EcoAirApplication[m[K in 3.529 seconds (process running for 4.279)
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O     PIDS
+f270a309e859   eco_air_active   0.13%     180.6MiB / 208MiB   86.85%    1.17kB / 126B   0B / 32.8kB   31
+Swap usado (bytes): 0
+================ Prueba con -m 200m ================
+eco_air_active
+5acb04d8e65c8dece403259cb5ef94adfb2fa6790fb726082415ea5cc48bfc20
+Status: running | ExitCode: 0 | OOMKilled: false
+2026-10-21T06:55:51.497080151Z Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+2026-10-21T06:55:45.260077552Z 2026-10-21T06:55:45.259Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : [01;31m[KStarted EcoAirApplication[m[K in 3.386 seconds (process running for 3.852)
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O         PIDS
+5acb04d8e65c   eco_air_active   0.13%     171.1MiB / 200MiB   85.54%    1.17kB / 126B   2.11MB / 11.2MB   31
+Swap usado (bytes): 11194368
+================ Prueba con -m 112m ================
+eco_air_active
+a72d4cfa5dd78702d42c7576d70f1ab462167f22a1138422ca03a6d4a24a982a
+Status: running | ExitCode: 0 | OOMKilled: false
+2026-10-21T06:56:11.523062295Z Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+2026-10-21T06:56:09.474045880Z 2026-10-21T06:56:09.473Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : [01;31m[KStarted EcoAirApplication[m[K in 7.573 seconds (process running for 8.541)
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O       PIDS
+a72d4cfa5dd7   eco_air_active   0.13%     100.3MiB / 112MiB   89.55%    1.17kB / 126B   175MB / 228MB   31
+Swap usado (bytes): 76632064
+15307cb65004301ba207b59ec4000ecc2b57304a1b3cf93457222002ebf545c1
+Status: exited | ExitCode: 137 | OOMKilled: true
+   size_t [01;31m[KInitialHeapSize[m[K                          = 109051904                                 {product} {ergonomic}
+   size_t [01;31m[KMaxHeapSize[m[K                              = 109051904                                 {product} {ergonomic}
+     bool [01;31m[KUseG1GC[m[K                                  = false                                     {product} {default}
+     bool [01;31m[KUseSerialGC[m[K                              = true                                      {product} {ergonomic}
+   size_t [01;31m[KInitialHeapSize[m[K                          = 3963617280                                {product} {ergonomic}
+   size_t [01;31m[KMaxHeapSize[m[K                              = 5943328768                                {product} {ergonomic}
+     bool [01;31m[KUseG1GC[m[K                                  = true                                      {product} {ergonomic}
+     bool [01;31m[KUseSerialGC[m[K                              = false                                     {product} {default}
+[?2004h[2026-10-21 01:56:40] julesb0@LAPTOP-AGL32KNJ:~/taller-docker/eco-air-backend$ [7mdocker rm -f eco_air_active[27m
+[7mdocker run -d --name eco_air_active -p 8080:8080 -m 208m eco-air-backend:1.0.0[27m
+[7msleep 20[27m
+[7mdocker logs --timestamps eco_air_active | grep "Started EcoAirApplication"[27m
+[7mdocker stats --no-stream eco_air_active[27m
+
+[7mrafaga() { for i in $(seq 1 1000); do curl -s -o /dev/null -X POST http://localhost:8080/api/alertas -H "Content-Type: a[27m[7mp[27m[7mplication/json" -d "{\"sensor\":\"ESTACION-01-PM25\",\"tipo\":\"PM2.5\",\"valor\":$i,\"nivel\":\"ALTO\"}"; done; } [27m
+[7mrafaga &[27m
+[7msleep 5;  docker stats --no-stream eco_air_active[27m
+[7msleep 5;  docker stats --no-stream eco_air_active[27m
+[7mwait[27m
+[7msleep 15; docker stats --no-stream eco_air_active[27m
+[7mcurl -s http://localhost:8080/api/alertas | grep -o '"id"' | wc -l[27m
+[7mecho -n "Swap usado (bytes): "; docker exec eco_air_active cat /sys/fs/cgroup/memory.swap.current[27m
+[7mdocker inspect eco_air_active --format='Status: {{.State.Status}} | ExitCode: {{.State.ExitCode}} | OOMKilled: {{.State.[27m[7mO[27m[7mOMKilled}}'[27m[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdocker rm -f eco_air_active
+docker run -d --name eco_air_active -p 8080:8080 -m 208m eco-air-backend:1.0.0
+sleep 20
+docker logs --timestamps eco_air_active | grep "Started EcoAirApplication"
+docker stats --no-stream eco_air_active
+
+rafaga() { for i in $(seq 1 1000); do curl -s -o /dev/null -X POST http://localhost:8080/api/alertas -H "Content-Type: application/json" -d "{\"sensor\":\"ESTACION-01-PM25\",\"tipo\":\"PM2.5\",\"valor\":$i,\"nivel\":\"ALTO\"}"; done; }
+rafaga &
+sleep 5;  docker stats --no-stream eco_air_active
+sleep 5;  docker stats --no-stream eco_air_active
+wait
+sleep 15; docker stats --no-stream eco_air_active
+curl -s http://localhost:8080/api/alertas | grep -o '"id"' | wc -l
+echo -n "Swap usado (bytes): "; docker exec eco_air_active cat /sys/fs/cgroup/memory.swap.current
+docker inspect eco_air_active --format='Status: {{.State.Status}} | ExitCode: {{.State.ExitCode}} | OOMKilled: {{.State.OOMKilled}}'
+[?2004leco_air_active
+68be9e269d9779f2e0d1d90d94427e601319c57548e7a957debbc942f307b599
+2026-10-21T07:37:44.633190332Z Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+ExitOnOutOfMemoryError
+2026-10-21T07:37:50.106654499Z 2026-10-21T07:37:50.106Z  INFO 1 --- [eco-air-backend] [           main] com.ecoair.EcoAirApplication             : [01;31m[KStarted EcoAirApplication[m[K in 4.555 seconds (process running for 5.757)
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O         PIDS
+68be9e269d97   eco_air_active   0.19%     183.7MiB / 208MiB   88.32%    1.17kB / 126B   66.7MB / 3.13MB   31
+[1] 6502
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O         PIDS
+68be9e269d97   eco_air_active   56.89%    201.7MiB / 208MiB   96.99%    242kB / 199kB   75.2MB / 12.8MB   31
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O         PIDS
+68be9e269d97   eco_air_active   33.57%    192.9MiB / 208MiB   92.72%    551kB / 454kB   75.3MB / 12.8MB   31
+[1]+  Done                    rafaga
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O         PIDS
+68be9e269d97   eco_air_active   0.15%     191.3MiB / 208MiB   91.99%    617kB / 509kB   75.3MB / 12.8MB   31
+1000
+Swap usado (bytes): 12771328
+Status: running | ExitCode: 0 | OOMKilled: false
+[?2004h[2026-10-21 02:38:31] julesb0@LAPTOP-AGL32KNJ:~/taller-docker/eco-air-backend$ [7mdocker inspect --format='{{.Id}}' eco-air[27m[7m-[27m[7mbackend:1.0.0 [27m
+[7mdocker exec eco_air_active env | grep OPERATOR_ID[27m
+[7mdocker stats --no-stream eco_air_active[27m[A[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdocker inspect --format='{{.Id}}' eco-air-backend:1.0.0
+docker exec eco_air_active env | grep OPERATOR_ID
+docker stats --no-stream eco_air_active
+[?2004lsha256:c2bba550c077fff5a98887aa624da27c1172f3c2989613f779eb075b908b26fe
+[01;31m[KOPERATOR_ID[m[K=908632
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O       PIDS
+68be9e269d97   eco_air_active   0.13%     194.1MiB / 208MiB   93.32%    619kB / 638kB   80.9MB / 13MB   31
+[?2004h[2026-10-21 02:41:11] julesb0@LAPTOP-AGL32KNJ:~/taller-docker/eco-air-backend$ [7mdocker ps -a --format "table {{.Names}}\t[27m[7m{[27m[7m{.Status}}\t{{.ID}}" [27m
+[7mls -la ~/taller-docker/taller-docker-semana13/[27m
+[7mexit[27m[A[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdocker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.ID}}"
+ls -la ~/taller-docker/taller-docker-semana13/
+exit
+[?2004lNAMES            STATUS                           CONTAINER ID
+eco_air_active   Up 8 minutes                     68be9e269d97
+eco_air_noswap   Exited (137) 49 minutes ago      15307cb65004
+eco_air_crash    Exited (137) About an hour ago   88ac69bca740
+total 444
+drwxr-xr-x 2 julesb0 julesb0   4096 Oct 20 16:47 [0m[01;34m.[0m
+drwxr-xr-x 4 julesb0 julesb0   4096 Oct 20 16:31 [01;34m..[0m
+-rw-r--r-- 1 julesb0 julesb0    172 Oct 20 16:47 .dockerignore
+-rw-r--r-- 1 julesb0 julesb0   2003 Oct 20 16:47 Dockerfile
+-rw-r--r-- 1 julesb0 julesb0 431232 Oct 21 02:46 audit_session.log
+exit
+
+Script done on 2026-10-21 02:46:06-05:00 [COMMAND_EXIT_CODE="0"]
