@@ -1,4 +1,4 @@
-# eco-air-backend: Taller Docker (semana 13)
+# eco-air-backend: Taller Docker 
 
 Julio Bolaños Benavides · Código 908632 · Programación Orientada a Objetos
 
