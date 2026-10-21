@@ -1,6 +1,7 @@
+
 # eco-air-backend: Taller Docker 
 
-Julio Bolaños Benavides · Código 908632 · Programación Orientada a Objetos
+Nicolas Bastidas - Julio Bolaños Benavides · Código 908632 - 890275  · Programación Orientada a Objetos
 
 Este repositorio tiene el backend de alertas ambientales eco-air-backend, hecho con Spring Boot 4.1.1, Java 17, Spring Data JPA (Hibernate) y H2. El backend está empaquetado en una imagen Docker multietapa que no corre como root y que tiene un límite de memoria calibrado.
 
